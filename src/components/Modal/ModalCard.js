@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import SendIcon from "@mui/icons-material/Send";
+import { useState } from "react";
 
 const style = {
   position: "absolute",
@@ -19,16 +20,19 @@ const style = {
   p: 4,
 };
 
-export default function ModalCard({addCard}) {
-  const [Card, setCard] = React.useState({});
+export default function ModalCard({ addCard }) {
+  const [Card, setCard] = useState({});
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const handleChange = (e) => {
-    setCard({...Card,[e.target.name] : e.target.value});
+    setCard({ ...Card, [e.target.name]: e.target.value });
   };
-
+  
+  const handleSubmit = (card) => {
+    addCard(card);
+  };
   return (
     <div>
       <Fab color="primary" aria-label="add">
@@ -45,33 +49,54 @@ export default function ModalCard({addCard}) {
             <h1>Add A Movi</h1>
           </Typography>
           <h3>Name</h3>
-          <TextField onChange={handleChange} id="outlined-basic" name="Name" variant="outlined" />
+          <TextField
+            label="name"
+            onChange={handleChange}
+            id="outlined-basic"
+            name="name"
+            variant="outlined"
+          />
           <h3>Image</h3>
-          <TextField id="outlined-basic" onChange={handleChange} name="Image" variant="outlined" />
+          <TextField
+            label="URL"
+            id="outlined-basic"
+            onChange={handleChange}
+            name="image"
+            variant="outlined"
+          />
           <h3>Date</h3>
-          <TextField id="outlined-basic" onChange={handleChange} name="Date" variant="outlined" />
+          <TextField
+            label="date"
+            id="outlined-basic"
+            onChange={handleChange}
+            name="date"
+            variant="outlined"
+          />
           <h3>Type</h3>
-          <TextField id="outlined-basic" onChange={handleChange} name="Type" variant="outlined" />
+          <TextField
+            label="type"
+            id="outlined-basic"
+            onChange={handleChange}
+            name="type"
+            variant="outlined"
+          />
           <h3>Description</h3>
           <TextField
             id="outlined-basic"
             label="Description"
             variant="outlined"
             onChange={handleChange}
-            name="Description"
+            name="description"
           />
           <h3>Rating</h3>
-          <Box
-            sx={{
-              "& > legend": { mt: 2 },
-            }}
-          >
-            <Rating
-              name="rating"
-              onChange={handleChange}
-            />
+          <Box>
+            <Rating name="rating" onChange={handleChange} />
           </Box>
-          <Button variant="contained" endIcon={<SendIcon />} onClick={addCard}>
+          <Button
+            variant="contained"
+            endIcon={<SendIcon />}
+            onClick={handleSubmit}
+          >
             Send
           </Button>
         </Box>

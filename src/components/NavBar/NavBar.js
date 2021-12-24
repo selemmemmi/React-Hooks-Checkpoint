@@ -8,6 +8,8 @@ import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
+import { Rating } from "@mui/material";
+
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -51,7 +53,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchAppBar() {
+export default function SearchAppBar({handleRating , handleTitle}) {
+  const handleChange =(e)=>{
+    handleTitle(e.target.value)
+  }
+  const handleChangerating =(e)=>{
+    handleRating(e.target.value)
+  }
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -80,8 +88,14 @@ export default function SearchAppBar() {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
+              onChange={handleChange}
             />
           </Search>
+          <Rating
+        name="simple-controlled"
+        
+        onChange={handleChangerating}
+      />
         </Toolbar>
       </AppBar>
     </Box>
