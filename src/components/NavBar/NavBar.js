@@ -9,6 +9,7 @@ import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import { Rating } from "@mui/material";
+import'./style.css'
 
 
 const Search = styled("div")(({ theme }) => ({
@@ -61,8 +62,8 @@ export default function SearchAppBar({handleRating , handleTitle}) {
     handleRating(e.target.value)
   }
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+    <Box sx={{ flexGrow: 1 ,background:"blue"}}>
+      <AppBar position="static" className="navapp">
         <Toolbar>
           <IconButton
             size="large"
@@ -93,6 +94,7 @@ export default function SearchAppBar({handleRating , handleTitle}) {
           </Search>
           <Rating
         name="simple-controlled"
+        style={{borderColor:"#FFC300" ,border:'20 solid'}}
         
         onChange={handleChangerating}
       />

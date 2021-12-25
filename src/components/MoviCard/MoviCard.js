@@ -7,11 +7,7 @@ import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import "./style.css";
 
-export default function MoviCard({
-  cardList,
-  titleshearch,
-  ratingSearch,
-}) {
+export default function MoviCard({ cardList, titleshearch, ratingSearch }) {
   return (
     <div className="movicards">
       {cardList
@@ -21,7 +17,13 @@ export default function MoviCard({
             movi.rating >= ratingSearch
         )
         .map((card) => (
-          <Card sx={{ display: "flex", maxWidth: "40%", marginTop: 10 }}>
+          <Card
+            sx={{
+              display: "flex",
+              maxWidth: "40%",
+              marginTop: 10,
+            }}
+          >
             <Box sx={{ display: "flex", flexDirection: "column" }}>
               <CardContent sx={{ flex: "1 0 auto" }}>
                 <Typography component="div" variant="h5">
@@ -34,13 +36,15 @@ export default function MoviCard({
                 >
                   {card.date} <br />
                   {card.type}
+                  <Box
+                    sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}
+                  >
+                    <br />
+                    <Rating name="simple-controlled" value={card.rating} />
+                  </Box>
                   <h4>{card.description}</h4>
                 </Typography>
               </CardContent>
-              <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
-                <Typography component="legend">Controlled</Typography>
-                <Rating name="simple-controlled" value={card.rating} />
-              </Box>
             </Box>
             <CardMedia
               component="img"

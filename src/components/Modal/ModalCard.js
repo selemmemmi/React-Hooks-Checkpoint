@@ -7,6 +7,7 @@ import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 import SendIcon from "@mui/icons-material/Send";
 import { useState } from "react";
+import './style.css'
 
 const style = {
   position: "absolute",
@@ -21,7 +22,14 @@ const style = {
 };
 
 export default function ModalCard({ addCard }) {
-  const [Card, setCard] = useState({});
+  const [Card, setCard] = useState({
+    image: "",
+    rating: 0,
+    name: "",
+    date: "",
+    type: "",
+    description: "",
+  });
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -29,13 +37,13 @@ export default function ModalCard({ addCard }) {
   const handleChange = (e) => {
     setCard({ ...Card, [e.target.name]: e.target.value });
   };
-  
-  const handleSubmit = (card) => {
-    addCard(card);
+
+  const handleSubmit = () => {
+    addCard(Card);
   };
   return (
     <div>
-      <Fab color="primary" aria-label="add">
+      <Fab color="primary" aria-label="add" className="addbtn">
         <AddIcon onClick={handleOpen} />
       </Fab>
       <Modal

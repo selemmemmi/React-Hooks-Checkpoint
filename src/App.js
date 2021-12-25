@@ -3,6 +3,7 @@ import MoviCard from "./components/MoviCard/MoviCard";
 import { useState } from "react";
 import ModalCard from "./components/Modal/ModalCard";
 import MoviData from "./components/MoviData/MoviData";
+import './App.css'
 
 function App() {
   const [cardList, setcardList] = useState(MoviData);
